@@ -4,7 +4,6 @@ using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,9 +12,7 @@ using Microsoft.Extensions.Logging;
 using Minded.Configuration;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MB.Application.Api
 {
@@ -53,7 +50,7 @@ namespace MB.Application.Api
 
             RegisterContext(services);
 
-            services.AddMinded(assembly => assembly.Name.StartsWith("Service."));            
+            services.AddMinded(assembly => assembly.Name.StartsWith("MB.Business."));            
             services.AddOData();
 
             services.AddMvc(
@@ -85,21 +82,26 @@ namespace MB.Application.Api
                     .Count();
                 routeBuilder.EnableDependencyInjection();
             });
+
+            app.UseStaticFiles();
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
 
-        public static void RegisterContext(IServiceCollection services)
+        private void RegisterContext(IServiceCollection services)
         {
-            if (services == null)
-                throw new ArgumentNullException(nameof(services));
+            var connectionString = Configuration.GetConnectionString(Constants.ConfigConnectionStringName);
 
-            var serviceProvider = services.BuildServiceProvider();
-            var configuration = serviceProvider.GetService<IConfiguration>();
-            var connectionString = configuration.GetConnectionString(Constants.ConfigConnectionStringName);
-
-            services.AddDbContextPool<MindedBankingContext>(options =>
-            {
-                options.UseSqlServer(connectionString);
-            }, poolSize: 5);
+            services.AddDbContext<MindedBankingContext>(o => o.UseSqlServer(connectionString, b=>b.MigrationsAssembly(typeof(MindedBankingContext).Assembly.FullName)));
+            //services.AddDbContextPool<MyMindedBankingContext>(options =>
+            //{
+            //    options.UseSqlServer(connectionString);
+            //}, poolSize: 5);
 
             services.AddTransient<IMindedBankingContext>(service =>
                 services.BuildServiceProvider().GetService<MindedBankingContext>());

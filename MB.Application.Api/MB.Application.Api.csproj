@@ -7,10 +7,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.13" />
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.5.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Minded" Version="0.1.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MB.Business.Currency\MB.Business.Currency.csproj" />
     <ProjectReference Include="..\MB.Common\MB.Common.csproj" />
     <ProjectReference Include="..\MB.Data.Access\MB.Data.Access.csproj" />
   </ItemGroup>

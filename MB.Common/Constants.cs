@@ -2,6 +2,6 @@
 {
     public static class Constants
     {
-        public static string ConfigConnectionStringName = "";
+        public static string ConfigConnectionStringName = "MindedBanking";
     }
 }

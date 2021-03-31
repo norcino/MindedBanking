@@ -3,7 +3,7 @@
     public class Currency
     {
         public int ID { get; set; }
-        public int Name { get; set; }
-        public int Code { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
     }
 }

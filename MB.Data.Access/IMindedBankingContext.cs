@@ -7,8 +7,8 @@ namespace MB.Data.Access
     {
         DbSet<User> Users { get; set; }
         DbSet<Transaction> Transactions { get; set; }
-        DbSet<Transaction> Currencies { get; set; }
+        DbSet<Currency> Currencies { get; set; }
         DbSet<Account> Accounts { get; set; }
-        DbSet<T> Set<T>() where T : class, new();
+        //DbSet<T> Set<T>() where T : class, new();
     }
 }

@@ -9,23 +9,23 @@ namespace MB.Data.Access
 {
     public class MindedBankingContext : BaseContext<MindedBankingContext>, IMindedBankingContext
     {
-        public MindedBankingContext(DbContextOptions options) : base(options)
+        public MindedBankingContext(DbContextOptions<MindedBankingContext> options) : base(options)
         { }
 
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
-        public virtual DbSet<Transaction> Currencies { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
-        public new DbSet<T> Set<T>() where T : class, new()
-        {
-            return base.Set<T>();
-        }
+        //public new DbSet<T> Set<T>() where T : class, new()
+        //{
+        //    return base.Set<T>();
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("dbo");
-            
+
             // Get all mappings from the current assembly
             var mappingTypes = Assembly.GetAssembly(GetType())
                 .GetTypes()
@@ -33,8 +33,8 @@ namespace MB.Data.Access
                 .Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IEntityTypeConfiguration<>)));
 
             // Get the generic Entity method of the ModelBuilder type
-            var entityMethod = typeof(ModelBuilder).GetMethods().Single(x => 
-                x.Name == "ApplyConfiguration" && 
+            var entityMethod = typeof(ModelBuilder).GetMethods().Single(x =>
+                x.Name == "ApplyConfiguration" &&
                 x.IsGenericMethod &&
                 x.GetParameters().FirstOrDefault()?.ParameterType.Name == "IEntityTypeConfiguration`1"
             );
@@ -46,9 +46,9 @@ namespace MB.Data.Access
 
                 // Create the method using the generic type
                 var genericEntityMethod = entityMethod.MakeGenericMethod(genericTypeArg);
-                
+
                 // Invoke the mapping method
-                genericEntityMethod.Invoke(modelBuilder, new [] { Activator.CreateInstance(mappingType) });
+                genericEntityMethod.Invoke(modelBuilder, new[] { Activator.CreateInstance(mappingType) });
             }
         }
 

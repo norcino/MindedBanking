@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Minded" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MB.Data.Access\MB.Data.Access.csproj" />
+    <ProjectReference Include="..\MB.Data.Common\MB.Data.Common.csproj" />
+    <ProjectReference Include="..\MB.Data.Entities\MB.Data.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
