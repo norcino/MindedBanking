@@ -1,6 +1,6 @@
 # MindedBanking
 
-## Considerations
+## Considerations due to limited time available
 1) A user can only have one account
 2) One account can belong only to a user
 3) I did not differentiate between domain model and data entities but it is recommended
@@ -8,6 +8,10 @@
 5) The API is also serving the UI, this is not ideal but simplifies the project
 6) Most of the testing has been omitted to make sure the features are completed in a timely manner, but this is not acceptable for production code
 7) I leveraged the filter capability but for a good implementation of the controllers, it would be nice to have a standardized structure with Get, GetById, Patch, Delete
+8) The UI does not contain tests
+9) The UI is not responsive and not optimised to be consumed from different device types and sizes
+10) UI is not refined and inputs are not validated
+11) Currency is not validated when a new transaction is added
 
 ## Solution structure
 ### UI Project

@@ -3,34 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Application.Api", "MB.Application.Api.csproj", "{69B6A12B-B68A-4DEB-BCC0-9121635629DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Application.Api", "MB.Application.Api.csproj", "{69B6A12B-B68A-4DEB-BCC0-9121635629DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Business.User", "..\MB.Business.User\MB.Business.User.csproj", "{B8F1EB51-071D-4394-A2AC-D6A7CBF2BD28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Business.User", "..\MB.Business.User\MB.Business.User.csproj", "{B8F1EB51-071D-4394-A2AC-D6A7CBF2BD28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Business.Currency", "..\MB.Business.Currency\MB.Business.Currency.csproj", "{B484EC00-C816-4255-8173-7BE7315E3977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Business.Currency", "..\MB.Business.Currency\MB.Business.Currency.csproj", "{B484EC00-C816-4255-8173-7BE7315E3977}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Business.Transaction", "..\MB.Business.Transaction\MB.Business.Transaction.csproj", "{4494DE27-C09C-4C75-82B4-036A8BF36308}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Business.Transaction", "..\MB.Business.Transaction\MB.Business.Transaction.csproj", "{4494DE27-C09C-4C75-82B4-036A8BF36308}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Data.Access", "..\MB.Data.Access\MB.Data.Access.csproj", "{62CBA1DB-42E3-412A-B835-E28E5FDB2026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Data.Access", "..\MB.Data.Access\MB.Data.Access.csproj", "{62CBA1DB-42E3-412A-B835-E28E5FDB2026}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Data.Entities", "..\MB.Data.Entities\MB.Data.Entities.csproj", "{21ED7F7F-419C-4908-AF5D-276CD11EA3C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Data.Entities", "..\MB.Data.Entities\MB.Data.Entities.csproj", "{21ED7F7F-419C-4908-AF5D-276CD11EA3C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Common.Configuration", "..\MB.Common.Configuration\MB.Common.Configuration.csproj", "{57B96B7E-E625-4591-84CF-0250722AD5BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Common.Configuration", "..\MB.Common.Configuration\MB.Common.Configuration.csproj", "{57B96B7E-E625-4591-84CF-0250722AD5BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Common.Logging", "..\MB.Common.Logging\MB.Common.Logging.csproj", "{3E4F9231-A5A6-4FC3-A265-8A64C1C9EBC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Common.Logging", "..\MB.Common.Logging\MB.Common.Logging.csproj", "{3E4F9231-A5A6-4FC3-A265-8A64C1C9EBC2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{905447D7-8747-48E9-ACDE-3536540613BE}"
 	ProjectSection(SolutionItems) = preProject
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Common", "..\MB.Common\MB.Common.csproj", "{CE05A675-ED21-4347-9455-BCAA9299A976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Common", "..\MB.Common\MB.Common.csproj", "{CE05A675-ED21-4347-9455-BCAA9299A976}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{61AAE77E-61D2-43AA-87DF-A470712BF48F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Application.Api.Tests", "..\MB.Application.Api.Tests\MB.Application.Api.Tests.csproj", "{895959E7-CAA8-43A0-A643-44F7E5DB0D49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Application.Api.Tests", "..\MB.Application.Api.Tests\MB.Application.Api.Tests.csproj", "{895959E7-CAA8-43A0-A643-44F7E5DB0D49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Data.Common", "..\MB.Data.Common\MB.Data.Common.csproj", "{FE16BEA2-D3B8-46DC-AA38-F498EF97EF70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MB.Data.Common", "..\MB.Data.Common\MB.Data.Common.csproj", "{FE16BEA2-D3B8-46DC-AA38-F498EF97EF70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Business.Account", "..\MB.Business.Account\MB.Business.Account.csproj", "{4E10693B-BCBA-4617-8D12-65A0BCA9CEBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MB.Business.Exchange", "..\MB.Business.Exchange\MB.Business.Exchange.csproj", "{635281E2-868D-4ACC-9C02-8F0866C1A595}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +86,14 @@ Global
 		{FE16BEA2-D3B8-46DC-AA38-F498EF97EF70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE16BEA2-D3B8-46DC-AA38-F498EF97EF70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE16BEA2-D3B8-46DC-AA38-F498EF97EF70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E10693B-BCBA-4617-8D12-65A0BCA9CEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E10693B-BCBA-4617-8D12-65A0BCA9CEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E10693B-BCBA-4617-8D12-65A0BCA9CEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E10693B-BCBA-4617-8D12-65A0BCA9CEBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{635281E2-868D-4ACC-9C02-8F0866C1A595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{635281E2-868D-4ACC-9C02-8F0866C1A595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{635281E2-868D-4ACC-9C02-8F0866C1A595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{635281E2-868D-4ACC-9C02-8F0866C1A595}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 namespace MB.Application.Api
 {
     [Route("api/[controller]")]
-    public class UserController : BaseController
+    public class UsersController : BaseController
     {
         private readonly IMediator _mediator;
 
-        public UserController(IMediator mediator)
+        public UsersController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpGet("{id}", Name = "GetById")]
+        [HttpGet("{id}", Name = "GetByUserId")]
         public async Task<IActionResult> Get(int id, ODataQueryOptions<User> queryOptions)
         {
             var query = ApplyODataQueryConditions<User, GetUserByIdQuery>(queryOptions, new GetUserByIdQuery(id));

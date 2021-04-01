@@ -1,0 +1,17 @@
+.componentBody {
+  font-size: 1.5em;
+}
+
+.small {
+  font-size: 0.7em;
+}
+
+.componentBody a {
+  cursor: pointer;
+  text-decoration: underline;
+  color: cadetblue;
+}
+
+.fundsTransfer {
+  font-size: 0.5em;
+}

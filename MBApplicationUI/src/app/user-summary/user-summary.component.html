@@ -1,0 +1,9 @@
+<div [hidden]="loading" class="componentBody">
+  <p class="small">Hello, welcome back!</p>
+  <p>{{user?.name}} {{user?.surname}}</p>
+  <div class="fundsTransfer" *ngIf="!showFundsTransfer">
+    <a (click)="deposit()">Deposit</a> - <a (click)="withdraw()">Withdraw</a>
+  </div>
+  <app-fund-transfer *ngIf="showFundsTransfer" [deposit]="isDepositTransfer" (notify)="closeFunds($event)"></app-fund-transfer>
+</div>
+<app-spinner *ngIf="loading"></app-spinner>

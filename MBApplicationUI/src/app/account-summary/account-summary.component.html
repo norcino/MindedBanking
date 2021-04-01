@@ -1,0 +1,6 @@
+<div [hidden]="loading" class="componentBody">
+  <p>Account number: {{account.number}}</p>
+  <p>Balance: {{balance}} {{account.defaultCurrency.code}}</p>
+</div>
+<app-spinner *ngIf="loading"></app-spinner>
+

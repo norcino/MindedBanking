@@ -15,7 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MB.Business.Account\MB.Business.Account.csproj" />
     <ProjectReference Include="..\MB.Business.Currency\MB.Business.Currency.csproj" />
+    <ProjectReference Include="..\MB.Business.Transaction\MB.Business.Transaction.csproj" />
     <ProjectReference Include="..\MB.Business.User\MB.Business.User.csproj" />
     <ProjectReference Include="..\MB.Common\MB.Common.csproj" />
     <ProjectReference Include="..\MB.Data.Access\MB.Data.Access.csproj" />

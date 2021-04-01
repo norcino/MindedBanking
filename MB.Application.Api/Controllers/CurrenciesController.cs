@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace MB.Application.Api
 {
     [Route("api/[controller]")]
-    public class CurrencyController : BaseController
+    public class CurrenciesController : BaseController
     {
         private readonly IMediator _mediator;
 
-        public CurrencyController(IMediator mediator)
+        public CurrenciesController(IMediator mediator)
         {
             _mediator = mediator;
         }

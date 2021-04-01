@@ -13,6 +13,7 @@ using Minded.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
+using System.Net.Http;
 
 namespace MB.Application.Api
 {
@@ -50,7 +51,19 @@ namespace MB.Application.Api
 
             RegisterContext(services);
 
-            services.AddMinded(assembly => assembly.Name.StartsWith("MB.Business."));            
+            services.AddMinded(assembly => assembly.Name.StartsWith("MB.Business."));
+
+            services.AddCors(options => {
+                options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder
+                    .WithOrigins("http://localhost:4200", "https://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .AllowAnyHeader();
+                });
+            });
             services.AddOData();
 
             services.AddMvc(
@@ -67,10 +80,7 @@ namespace MB.Application.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder =>
-            {
-                builder.AllowAnyOrigin();
-            });
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseMvc(routeBuilder =>
             {
