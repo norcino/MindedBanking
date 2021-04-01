@@ -3,8 +3,6 @@ using MB.Data.Entities;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Mvc;
 using Minded.Mediator;
-using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace MB.Application.Api
@@ -20,10 +18,10 @@ namespace MB.Application.Api
         }
 
         [HttpGet]
-        public async Task<IReadOnlyCollection<Currency>> Get(ODataQueryOptions<Currency> queryOptions)
+        public async Task<IActionResult> Get(ODataQueryOptions<Currency> queryOptions)
         {
             var query = ApplyODataQueryConditions<Currency, GetAllCurrenciesQuery>(queryOptions, new GetAllCurrenciesQuery());
-            return await _mediator.ProcessQueryAsync(query);
+            return Ok(await _mediator.ProcessQueryAsync(query));
         }
     }
 }

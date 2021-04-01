@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using MB.Data.Access;
 using MB.Data.Common;
@@ -22,7 +21,7 @@ namespace MB.Business.Currency
    
         public async Task<List<Data.Entities.Currency>> HandleAsync(GetAllCurrenciesQuery query)
         {
-            return await query.ApplyTo<Data.Entities.Currency>(_context.Currencies.AsQueryable()).ToListAsync();
+            return await query.ApplyTo(_context.Currencies.AsQueryable()).ToListAsync();
         }
     } 
 }

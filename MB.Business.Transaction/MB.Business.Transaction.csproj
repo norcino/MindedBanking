@@ -8,4 +8,9 @@
     <PackageReference Include="Minded" Version="0.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MB.Data.Access\MB.Data.Access.csproj" />
+    <ProjectReference Include="..\MB.Data.Common\MB.Data.Common.csproj" />
+  </ItemGroup>
+
 </Project>
