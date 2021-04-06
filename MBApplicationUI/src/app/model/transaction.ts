@@ -1,25 +1,19 @@
+import { Currency } from "./currency";
+
 export class Transaction {
-  public id: number;
+  public id?: number;
   public description: string;
-  public amount: number;
+  public amount?: number;
   public originalAmount: number;
   public currencyId: number;
+  public currency?: Currency;
   public accountId: number;
-  public dateTime: string;
+  public dateTime?: string;
 
-  constructor(id: number,
-    description: string,
-    amount: number,
-    originalAmount: number,
-    currencyId: number,
-    accountId: number,
-    dateTime: string){
-    this.id = id;
+  constructor(description: string, originalAmount: number, currencyId: number, accountId: number){
     this.description = description;
-    this.amount = amount;
     this.originalAmount = originalAmount;
     this.currencyId = currencyId;
     this.accountId = accountId;
-    this.dateTime = dateTime;
   }
 }

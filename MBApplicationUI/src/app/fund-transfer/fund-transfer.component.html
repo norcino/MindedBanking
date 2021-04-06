@@ -1,29 +1,35 @@
 <div class="formTransfer">
-  <div class="row">
-    <div class="col-8">
-      <p class="description">{{confirm}}</p>
+  <form #transactionForm="ngForm">
+  <div class="col-8">
+    <p class="description">{{confirm}}</p>
+  </div>
+  <div [hidden]="completed">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input id="description" name="description" class="form-control" type="text" ngModel required #descriptionField="ngModel"/>
+      <div [hidden]="descriptionField.valid || descriptionField.untouched" class="validation alert alert-danger">Enter a description</div>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input id="amount" name="amount" class="form-control" type="number" ngModel required #amountField="ngModel" (blur)="validateAmount(amountField)">
+      <div [hidden]="amountField.valid || amountField.untouched" class="validation alert alert-danger">Enter a positive amount</div>
+    </div>
+    <div class="form-group">
+      <label for="currencies">Currency</label>
+      <select id="currencies" class="form-control" name="currencies" ngModel required #currencyField="ngModel">
+        <option *ngFor="let currency of currencies" [ngValue]="currency.id">
+          {{currency.code}}
+        </option>
+      </select>
+      <div [hidden]="currencyField.valid || currencyField.untouched" class="validation alert alert-danger">Select the currency</div>
     </div>
   </div>
-  <div>
-    <div class="form-group">
-      <small><label for="description">Description</label></small>
-      <input id="description" class="form-control" type="text" [(ngModel)]="description"/>
-    </div>
-    <div class="row">
-      <div class="col">
-        <small><label for="amount">Amount</label></small>
-        <input id="amount" class="form-control" type="text" [(ngModel)]="amount"/>
-      </div>
-      <div class="col">
-        <small><label for="amount">Currency</label></small>
-        <select formControlName="categories" class="form-control" (change)="changedCurrency($event)">
-          <option *ngFor="let currency of currencies">{{currency.code}}</option>
-        </select>
-      </div>
-    </div>
+  <div [hidden]="!completed" [ngClass]="isErrorNotification ? 'alert alert-danger' : 'alert alert-success'" role="alert">
+    <span class="message">{{message}}</span>
   </div>
   <div class="buttons">
     <button (click)="closeFunds()" class="btn space-right">Close</button>
-    <button type="submit" class="btn btn-primary" (click)="transferFunds()">{{confirm}}</button>
+    <button [disabled]="transactionForm.invalid" [hidden]="completed" type="submit" class="btn btn-primary" (click)="onSubmit(transactionForm)">{{confirm}}</button>
   </div>
+  </form>
 </div>

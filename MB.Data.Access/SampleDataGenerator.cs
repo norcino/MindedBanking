@@ -13,7 +13,7 @@ namespace MB.Data.Access
         {
             var context = (IMindedBankingContext)serviceProvider.GetService(typeof(IMindedBankingContext));
 
-            if (context.Transactions.Any()) return;
+            if (context.Currencies.Any()) return;
 
             var user = new User { Name = "Joe", Surname = "Wolf" };
             var gbpCurrency = new Currency { Code = "GBP", Name = "Pound Sterling" };

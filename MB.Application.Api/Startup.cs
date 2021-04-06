@@ -11,9 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Minded.Configuration;
 using Newtonsoft.Json;
-using System;
 using System.Linq;
-using System.Net.Http;
 
 namespace MB.Application.Api
 {
@@ -92,7 +90,8 @@ namespace MB.Application.Api
                     .Count();
                 routeBuilder.EnableDependencyInjection();
             });
-
+            app.UseStatusCodePagesWithReExecute("/");
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseHttpsRedirection();
 
@@ -107,11 +106,7 @@ namespace MB.Application.Api
         {
             var connectionString = Configuration.GetConnectionString(Constants.ConfigConnectionStringName);
 
-            services.AddDbContext<MindedBankingContext>(o => o.UseSqlServer(connectionString, b=>b.MigrationsAssembly(typeof(MindedBankingContext).Assembly.FullName)));
-            //services.AddDbContextPool<MyMindedBankingContext>(options =>
-            //{
-            //    options.UseSqlServer(connectionString);
-            //}, poolSize: 5);
+            services.AddDbContext<MindedBankingContext>(o => o.UseSqlServer(connectionString, b => b.MigrationsAssembly(typeof(MindedBankingContext).Assembly.FullName)));
 
             services.AddTransient<IMindedBankingContext>(service =>
                 services.BuildServiceProvider().GetService<MindedBankingContext>());

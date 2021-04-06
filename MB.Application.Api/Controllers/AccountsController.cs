@@ -1,11 +1,10 @@
 ﻿using MB.Business.Account;
+using MB.Business.Transaction;
 using MB.Data.Entities;
 using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNetCore.Mvc;
 using Minded.Mediator;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MB.Application.Api
@@ -17,9 +16,8 @@ namespace MB.Application.Api
 
         public AccountsController(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator;            
         }
-
 
         [HttpGet()]
         public async Task<IActionResult> Get(ODataQueryOptions<Account> queryOptions)
@@ -46,7 +44,24 @@ namespace MB.Application.Api
         [HttpGet("{id}/Balance", Name = "GetBalanceByAccountId")]
         public async Task<IActionResult> GetBalanceByAccountId(int id)
         {
+            var getAccountQuery = new GetAccountByIdQuery(id);
+            var account = await _mediator.ProcessQueryAsync(getAccountQuery);
+            if (account == null) return NotFound();
+
             var query = new GetAccountBalanceByAccountIdQuery(id);
+            var result = await _mediator.ProcessQueryAsync(query);
+
+            return Ok(result);
+        }
+
+        [HttpGet("{id}/Transactions", Name = "GetTransactionsByAccountId")]
+        public async Task<IActionResult> GetTransactionsByAccountId(int id, ODataQueryOptions<Transaction> queryOptions)
+        {
+            var getAccountQuery = new GetAccountByIdQuery(id);
+            var account = await _mediator.ProcessQueryAsync(getAccountQuery);
+            if (account == null) return NotFound();
+
+            var query = ApplyODataQueryConditions<List<Transaction>, GetTransactionsByAccountIdQuery>(queryOptions, new GetTransactionsByAccountIdQuery(id));
             var result = await _mediator.ProcessQueryAsync(query);
 
             if (result == null) return NotFound();

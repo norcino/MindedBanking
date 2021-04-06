@@ -2,5 +2,8 @@
   <p>Account number: {{account.number}}</p>
   <p>Balance: {{balance}} {{account.defaultCurrency.code}}</p>
 </div>
+<div [hidden]="!errorMessage" class="alert alert-danger" role="alert">
+  <span class="message">{{errorMessage}}</span>
+</div>
 <app-spinner *ngIf="loading"></app-spinner>
-
+<app-account-transactions *ngIf="account.id && account.defaultCurrency.code" [accountId]="account.id" [defaultCurrency]="account.defaultCurrency.code"></app-account-transactions>

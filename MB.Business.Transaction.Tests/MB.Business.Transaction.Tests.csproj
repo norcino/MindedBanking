@@ -9,8 +9,6 @@
   <ItemGroup>
     <PackageReference Include="AnonymousData" Version="1.0.9" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
@@ -20,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MB.Application.Api\MB.Application.Api.csproj" />
+    <ProjectReference Include="..\MB.Business.Transaction\MB.Business.Transaction.csproj" />
   </ItemGroup>
 
 </Project>

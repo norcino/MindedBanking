@@ -1,4 +1,24 @@
 <div [hidden]="loading" class="componentBody">
-  <p>show here transactions</p>
+  <a (click)="export()">Export</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col" sortable="description">Description</th>
+      <th scope="col" sortable="amount">Amount ({{defaultCurrency}})</th>
+      <th scope="col" sortable="originalAmount">Original Amount</th>
+      <th scope="col" sortable="originalAmount">Original Currency</th>
+      <th scope="col" sortable="date">Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let transaction of transactions">
+      <td>{{ transaction.description }}</td>
+      <td>{{ transaction.amount | number }}</td>
+      <td>{{ transaction.originalAmount | number }}</td>
+      <td>{{ transaction.currency?.code }}</td>
+      <td>{{ transaction.dateTime | date:'medium' }}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>

@@ -5,9 +5,8 @@
 }
 
 .description {
-  margin-left: 10px;
   color: cadetblue;
-  font-size: 0.9em;
+  font-size: 0.7em;
 }
 
 .buttons{
@@ -19,4 +18,21 @@
 
 .space-right {
   margin-right: 5px;
+}
+
+.message {
+  font-size: 0.8em;
+}
+
+.ng-invalid:not(form).ng-touched {
+  border: 1px solid darkred;
+}
+
+.validation {
+  font-size: 0.5em;
+  padding: 4 2;
+}
+
+label {
+  font-size: 0.6em;
 }

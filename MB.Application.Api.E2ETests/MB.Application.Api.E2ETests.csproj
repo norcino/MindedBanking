@@ -7,10 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="testappsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="testappsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AnonymousData" Version="1.0.9" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.13" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.1" />
@@ -21,6 +33,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MB.Application.Api\MB.Application.Api.csproj" />
+    <ProjectReference Include="..\MB.Common.Testing\MB.Common.Testing.csproj" />
+    <ProjectReference Include="..\MB.Data.Access\MB.Data.Access.csproj" />
   </ItemGroup>
 
 </Project>

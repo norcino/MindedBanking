@@ -1,6 +1,4 @@
-﻿using MB.Business.Account;
-using MB.Business.Currency;
-using MB.Business.Exchange;
+﻿using MB.Common;
 using MB.Data.Access;
 using Minded.Common;
 using Minded.Decorator.Validation;
@@ -23,16 +21,11 @@ namespace MB.Business.Transaction
         }
 
         public async Task<ICommandResponse> HandleAsync(CreateTransactionCommand command)
-        {
-            var getAccountQuery = new GetAccountByIdQuery(command.Transaction.AccountId);
-            var account = await _mediator.ProcessQueryAsync(getAccountQuery);
-
-            var getCurrencyByIdQuery = new GetCurrencyByIdQuery(account.DefaultCurrencyId);
-            var defaultCurrency = await _mediator.ProcessQueryAsync(getCurrencyByIdQuery);
-            command.Transaction.OriginalAmount = command.Transaction.Amount;
-            command.Transaction.DateTime = DateTime.UtcNow;
-
-            command = await HandleNonDefaultCurrency(command, defaultCurrency);
+        {                        
+            command.Transaction.DateTime = SystemTime.UtcNow();
+            
+            var getAmountQuery = new GetTransactionAmountQuery(command.Transaction);
+            command.Transaction.Amount = await _mediator.ProcessQueryAsync(getAmountQuery);
 
             await _context.Transactions.AddAsync(command.Transaction);
             await _context.SaveChangesAsync();
@@ -41,20 +34,6 @@ namespace MB.Business.Transaction
             {
                 Successful = true
             };
-        }
-
-        private async Task<CreateTransactionCommand> HandleNonDefaultCurrency(CreateTransactionCommand command, Data.Entities.Currency defaultCurrency)
-        {
-            if (command.Transaction.CurrencyId != defaultCurrency.ID)
-            {
-                var getCurrencyByIdQuery = new GetCurrencyByIdQuery(command.Transaction.CurrencyId);
-                var transactionCurrency = await _mediator.ProcessQueryAsync(getCurrencyByIdQuery);
-
-                var getExchangeRateQuery = new GetExchangeRateQuery(transactionCurrency.Code, defaultCurrency.Code, command.Transaction.Amount);
-                command.Transaction.OriginalAmount = await _mediator.ProcessQueryAsync(getExchangeRateQuery);
-            }
-
-            return command;
         }
     }
 }

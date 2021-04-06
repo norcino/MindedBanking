@@ -12,14 +12,13 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { CsvExportService } from './csv-export.service';
 
 const routes: Routes = [
   { path: 'account/:id', component: AccountSummaryComponent },
   { path: 'account', redirectTo: '/home', pathMatch: 'full' },
   { path: 'user/:id', component: UserSummaryComponent },
-  { path: 'user', redirectTo: '/home', pathMatch: 'full' },
-  { path: '', component: AppComponent },
-  { path: '**', component: AppComponent }
+  { path: 'user', redirectTo: '/home', pathMatch: 'full' }
 ]
 
 @NgModule({
@@ -40,7 +39,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ApiService, HttpClientModule],
+  providers: [ApiService, CsvExportService, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

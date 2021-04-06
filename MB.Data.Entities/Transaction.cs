@@ -7,7 +7,7 @@ namespace MB.Data.Entities
         public int ID { get; set; }
         public string Description { get; set; }
         public decimal Amount { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime? DateTime { get; set; }
 
         public decimal OriginalAmount { get; set; }
         public int CurrencyId { get; set; }

@@ -16,15 +16,15 @@ export class ApiService {
   }
 
   getUserById(userId: number): Observable<User> {
-    return this.http.get<User>(this.baseURL + '/Users/' + userId);
+    return this.http.get<User>(this.baseURL + '/Users/' + userId + '?$expand=Account');
   }
 
   getTransactionsByAccountId(accountId: number): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(this.baseURL + '/Transactions/' + accountId);
+    return this.http.get<Transaction[]>(this.baseURL + '/Accounts/' + accountId + '/Transactions?$expand=Currency&$orderby=DateTime desc&$top=20');
   }
 
-  getAccountByUserId(userId: number): Observable<Account[]> {
-    return this.http.get<Account[]>(this.baseURL + '/Accounts?filter=UserId eq ' + userId + '&$expand=DefaultCurrency');
+  getAccountById(id: number): Observable<Account> {
+    return this.http.get<Account>(this.baseURL + '/Accounts/' + id + '?$expand=DefaultCurrency');
   }
 
   getSupportedCurrencies(): Observable<Currency[]> {

@@ -1,10 +1,12 @@
 ﻿using Minded.Common;
+using Minded.Decorator.Transaction;
 using Minded.Decorator.Validation;
 using Minded.Log;
 
 namespace MB.Business.Transaction
 {
     [ValidateCommand]
+    //[TransactionCommand]
     public class CreateTransactionCommand : ICommand
     {
         public Data.Entities.Transaction Transaction { get; set; }

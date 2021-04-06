@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgForm, NgModel } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { Currency } from '../model/currency';
 import { Transaction } from '../model/transaction';
@@ -11,19 +12,26 @@ import { Transaction } from '../model/transaction';
 export class FundTransferComponent implements OnInit {
   @Input()
   public deposit: boolean = true;
+  @Input()
+  public accountId?: number = 0;
   @Output() notify: EventEmitter<boolean> = new EventEmitter();
-  description: string = "";
-  amount: number = 0;
-  currency: string = "";
   confirm: string = "";
   currencies: Currency[] = [];
-  errorMessage: string = "";
+  message: string = "";
   loading: boolean = true;
+  completed: boolean = false;
+  isErrorNotification: boolean = false;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.confirm = this.deposit ? "Deposit" :  "withdraw";
+    this.confirm = this.deposit ? "Deposit" :  "Withdraw";
+
+    if(!this.accountId) {
+      this.message = "Account not valid";
+      this.isErrorNotification = true;
+      this.loading = false;
+    }
 
     this.apiService.getSupportedCurrencies().subscribe({
       next: result => {
@@ -31,8 +39,9 @@ export class FundTransferComponent implements OnInit {
         this.loading = false;
       },
       error: message => {
-        console.log("Receved error: " + message);
-        this.errorMessage = message;
+        this.message = message;
+        this.completed = true;
+        this.isErrorNotification = true;
         this.loading = false;
       }
     });
@@ -42,23 +51,29 @@ export class FundTransferComponent implements OnInit {
     this.notify.emit(true);
   }
 
-  transferFunds(){
-    var currencyID = 1;
-    var accountID = 1;
-    var transaction = new Transaction(0,this.description, this.amount, 0, currencyID, accountID, '');
+  validateAmount(field: NgModel) {
+    if(field.value < 0.01) {
+      field.valueAccessor?.writeValue(null);
+      field.control.setErrors({'invalid': true});
+    }
+  }
+
+  onSubmit(form: NgForm) {
+    var transactionAmount = form.value.amount;
+    if(!this.deposit) transactionAmount = form.value.amount * -1;
+
+    let transaction = new Transaction(form.value.description, transactionAmount, form.value.currencies, Number(this.accountId));
 
     this.apiService.postTransaction(transaction).subscribe({
       next: result => {
-        console.log(result);
+        this.message = "Transaction completed successfully"
+        this.completed = true;
       },
       error: message => {
-        console.log("Receved error: " + message);
-        this.errorMessage = message;
+        this.message = message.error;
+        this.isErrorNotification = true;
+        this.completed = true;
       }
     });
-  }
-
-  changedCurrency(e: Event) {
-
   }
 }

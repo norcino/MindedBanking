@@ -60,5 +60,11 @@
   color:cadetblue;
 }
 
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: grey;
+  border-color: grey;
+}
+
 
 /*# sourceMappingURL=styles.css.map*/
